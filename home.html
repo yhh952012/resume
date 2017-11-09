@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/home.css"/>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body data-spy="scroll" data-toggle="my-affix-nav" id="home"><!--question  home position-->
+<div id="all" >
+    <!--navbar-->
+    <div class="navbar navbar-default navbar-fixed-top"  >
+        <div class="container">
+            <div class="navbar-header">
+                <div class="navbar-brand">
+                    <img src="img/logo.png" alt=""/>
+                </div>
+                <a href="#navbar" class="navbar-toggle" data-toggle="collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar">
+                <ul class="nav navbar-nav nav-pills nav-stacked">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#works">Works</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#connect">Connect</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--jumbotron-->
+    <div class="jumbotron">
+        <div class="jumbotron-bg"></div>
+        <div class="box-1 hidden-xs">
+            <span class="time-1"></span>
+        </div>
+        <div class="jumb-contain">
+            <h1>Hello</h1>
+            <p>I'm <span style='color:red;font-weight:bold;'>yehuanhuan</span>. web front end development & life lover.</p>
+        </div>
+    </div>
+    <!--air ship-->
+    <!--<div class="container">-->
+        <!--<iframe src="airship.html" scrolling="no" border="0" frameborder="0" width=80% height=80%></iframe>-->
+    <!--</div>-->
+    <!--works-->
+    <div class="container" id="works">
+        <!--project 1-2-->
+        <div class="row">
+            <div class="hidden-xs col-sm-5">
+                <div class="works-intro">
+                    <h3>2048游戏</h3>
+                    <ul class="nav">
+                        <li><span class="glyphicon glyphicon-ok"></span> 用户可以选择 4行4列 之内的任意行列数</li>
+                        <li><span class="glyphicon glyphicon-ok"></span> 移动核心算法：</li>
+                        <li><span class="glyphicon glyphicon-ok"></span> 结束核心算法：</li>
+                        <li><span class="glyphicon glyphicon-ok"></span> 记录最高纪录</li>
+                    </ul>
+                </div>
+                <div class="works-intro">
+                    <h3>画板</h3>
+                    <ul class="nav">
+                        <li><span class="glyphicon glyphicon-ok"></span> 利用canvas做的简易画板</li>
+                        <li><span class="glyphicon glyphicon-ok"></span> 可以选择线宽、颜色及背景色</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                <a href="2048.html" class="works-link">
+                    <img src="img/2048.PNG" class="img-responsive works-img" alt=""/>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                <a href="palette.html" class="works-link">
+                    <img src="img/palette.PNG" class="img-responsive works-img" alt=""/>
+                </a>
+            </div>
+        </div>
+        <!--project 3-4-->
+        <div class="row">
+            <div class="hidden-xs col-sm-5">
+                <div class="works-intro">
+                    <h3>简易时钟及日历</h3>
+                    <ul class="nav">
+                        <li><span class="glyphicon glyphicon-ok"></span> 利用JS中的Date对象和setInterval方法</li>
+                    </ul>
+                </div>
+                <!--<div class="works-intro">-->
+                    <!--<h3>图片大小修改</h3>-->
+                    <!--<ul class="nav">-->
+                        <!--<li><span class="glyphicon glyphicon-ok"></span> 利用html5中的拖拽事件</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+                <div class="works-intro">
+                    <h3>生长的树</h3>
+                    <ul class="nav">
+                        <li><span class="glyphicon glyphicon-ok"></span> 利用SVG实现</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                <a href="clock.html" class="works-link">
+                    <img src="img/clock.png" class="img-responsive works-img" alt=""/>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                <a href="tree.html" class="works-link">
+                    <img src="img/tree.png" class="img-responsive works-img" alt=""/>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--about-->
+    <div id="about">
+        <div  class="container-fluid">
+            <div class="box-4 hidden-xs">
+                <span  class="time-2">16 : 46 : 33</span>
+            </div>
+            <div class="container" >
+                <div class="row">
+                    <div class="col-xs-12" id="stats-title-t">
+                        Time for some number crunching stats.
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-sm-offset-2">
+                        <div class="stats-1 center-block">
+                           0+
+                        </div>
+                        <h2>Projects</h2>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <div class="stats-2 center-block">
+                            0+
+                        </div>
+                        <h2>Hours for experience</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid skills">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12" id="stats-title-b">
+                        Crunching stats for skills.
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 skills-l">
+                        <div class="progress">
+                            HTML
+                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="80" style="width: 80%">
+                                <span class="sr-only">80% </span>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            CSS3
+                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="80" style="width: 80%">
+                                <span class="sr-only">80% </span>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            Less
+                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="80" style="width: 50%">
+                                <span class="sr-only">50% </span>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            JavaScript
+                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="80" style="width: 80%">
+                                <span class="sr-only">80% </span>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            JSON
+                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="80" style="width: 70%">
+                                <span class="sr-only">70% </span>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            XML
+                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="80" style="width: 50%">
+                                <span class="sr-only">50% </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 skills-r">
+                        <div class="progress">
+                            Jquery
+                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="80" style="width: 80%">
+                                <span class="sr-only">80% </span>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            Bootstrap
+                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="80" style="width: 70%">
+                                <span class="sr-only">70% </span>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            AngularJS
+                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="80" style="width: 70%">
+                                <span class="sr-only">70% </span>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            PHP
+                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="80" style="width: 50%">
+                                <span class="sr-only">50% </span>
+                            </div>
+                        </div>
+                        <div class="progress">
+                           NodeJS
+                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="80" style="width: 40%">
+                                <span class="sr-only">40% </span>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            SQL
+                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="80" style="width: 50%">
+                                <span class="sr-only">50% </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--connect-->
+    <div class="container hidden-xs" id="connect" >
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <label id="clear">Clear</label>
+                        <div class="dropdown">
+                            <a href="" data-toggle="dropdown">Line width <span class="caret"></span> </a>
+                            <ul class="dropdown-menu" id="lineWidth">
+                                <li>1</li>
+                                <li>3</li>
+                                <li>5</li>
+                                <li>7</li>
+                                <li>9</li>
+                                <li>11</li>
+                            </ul>
+                        </div>
+                        <label for="lineColor">Color </label>
+                        <input type="color" id="lineColor"/>
+                        <label for="fill">Fill </label>
+                        <input type="color" id="fill"/>
+                    </div>
+                    <div class="col-xs-12">
+                        <canvas id="cvs-connec" class="center-block" width="800" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--affix-->
+    <div id="my-affix-nav" data-spy="affix" class="hidden-xs">
+        <ul class="nav nav-stacked">
+            <li><span>Home</span><a href="#home">1</a></li>
+            <li><span>Works</span><a href="#works">2</a></li>
+            <li><span>About</span><a href="#about">3</a></li>
+            <li><span>Connect</span><a href="#connect">4</a></li>
+        </ul>
+    </div>
+    <!--movebox-->
+    <div class="container moveBox">
+        <div class="box-2 hidden-xs"></div>
+        <!-- <div class="box-3 hidden-xs"></div> -->
+        <div class="box-5 hidden-xs"></div>
+        <div class="box-6 hidden-xs"></div>
+    </div>
+</div>
+    
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-1.11.3.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.js"></script>
+    <script src="js/home.js"></script>
+</body>
+</html>

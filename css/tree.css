@@ -1,0 +1,8 @@
+body{
+    background-color: silver;
+    padding:100px;
+}
+line {
+    stroke: black;
+    stroke-width: .06;
+}

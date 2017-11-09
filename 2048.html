@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    ul{
+        height:395px;
+        width:395px;
+        background: #BBADA0;
+        padding-left: 0;
+        border-radius: 8px;
+        margin: auto;
+        margin-top: 30px;
+    }
+    li{
+        width:80px;
+        height:80px;
+        float: left;
+        background:#CCC0B3;
+        border-radius: 8px;
+        margin-left: 15px;
+        margin-top: 15px;
+        list-style: none;
+        font-size:40px;
+        color:#776E65;
+        line-height:80px;
+        text-align: center;
+    }
+    div{
+        margin: 0;
+        width: 100%;
+        padding-top: 50px;
+    }
+    h1{
+        width: 300px;
+        margin: 0 auto ;
+    }
+</style>
+<body>
+<div>
+    <h1>分数:0</h1>
+    <h1>最大数字:</h1>
+</div>
+<ul></ul>
+</body>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    //排列4*4的格子
+    for(var i=0;i<16;i++){
+        $('ul').eq(0).append('<li></li>');
+    }
+    //创建二维数组存放每个位置上的数值
+    var arr=[],copy=[],score=0;//定义score进行分数数值的存储
+    function clear(copy) {
+        for(var i=0;i<4;i++){
+            copy[i]=[];
+            for(var j=0;j<4;j++){
+                copy[i][j]='';
+            }
+        }
+    }
+    clear(arr);
+    clear(copy);
+    function  init(arr) {
+        var oneX=Math.floor(Math.random()*4);
+        var oneY=Math.floor(Math.random()*4);
+        var twoX=Math.floor(Math.random()*4);
+        var twoY=Math.floor(Math.random()*4);
+        while((oneX===twoX)&&(oneY===twoY)){
+            twoX=Math.floor(Math.random()*4);
+            twoY=Math.floor(Math.random()*4);
+        }
+        var num1=Math.floor(Math.random()*2+1)*2;
+        var num2=Math.floor(Math.random()*2+1)*2;
+        arr[oneX][oneY]=num1;
+        arr[twoX][twoY]=num2;
+        color(arr);
+        var num=[num1,num2].sort(function (a,b) {return a-b;})[1];  //定义原始的
+        var html= '最大数字:'+num;
+        $('h1').eq(1).html(html);
+    }
+    //绘制元素颜色以及数字
+    function  color(arr) {
+        for(var i=0;i<4;i++){
+            for(var j=0;j<4;j++){
+                switch(arr[i][j]){
+                    case 2: $('li').eq(4*i+j).html(arr[i][j]).css({'background':'#EEE3DA','color':'#776E65','font-size':'40px'});break;
+                    case 4: $('li').eq(4*i+j).html(arr[i][j]).css({'background':'#EDE0C8','color':'#776E65','font-size':'40px'});break;
+                    case 8: $('li').eq(4*i+j).html(arr[i][j]).css({'background':'#F2B179','color':'white','font-size':'40px'});break;
+                    case 16: $('li').eq(4*i+j).html(arr[i][j]).css({'background':'#F59563','color':'white','font-size':'40px'});break;
+                    case 32: $('li').eq(4*i+j).html(arr[i][j]).css({'background':'#F67C5F','color':'white','font-size':'40px'});break;
+                    case 64: $('li').eq(4*i+j).html(arr[i][j]).css({'background':'#F65E3B','color':'white','font-size':'40px'});break;
+                    case 128: $('li').eq(4*i+j).html(arr[i][j]).css({'background':'#EDCF72','color':'white','font-size':'40px'});break;
+                    case 256: $('li').eq(4*i+j).html(arr[i][j]).css({'background':'#cbc130','color':'white','font-size':'40px'});break;
+                    case 512: $('li').eq(4*i+j).html(arr[i][j]).css({'background':'#81ed29','color':'white','font-size':'40px'});break;
+                    case 1024: $('li').eq(4*i+j).html(arr[i][j]).css({'background':'#4ce5dd','color':'white','font-size':'30px'});break;
+                    case 2048: $('li').eq(4*i+j).html(arr[i][j]).css({'background':'#ed9d9e','color':'white','font-size':'30px'});break;
+                    default:$('li').eq(4*i+j).html(arr[i][j]).css({'background':'#CCC0B3','color':'#776E65','font-size':'40px'});break;
+                }
+            }
+        }
+    }
+    function right(arr,copy) {
+        for(var i=0;i<4;i++){
+            var row=0; //定义一个变量用于计算本行的数字数量
+            var col=[];//定义一个数组存放本行数字存在的位置
+            for(var j=0;j<4;j++){
+                if(arr[i][j]||j==3){  //如果每行存在一颗
+                    if(arr[i][j]){col.push(j);row++};
+                    if(j==3){  //达到每行末尾时候进行检测row的数量
+                        switch (row){
+                            case 1:
+                                var num=col[0];
+                                copy[i][3]=arr[i][num];
+                                break;
+                            case 2:
+                                copy[i][3]=arr[i][col[1]];
+                                copy[i][2]=arr[i][col[0]];
+                                if(copy[i][3]==copy[i][2]){
+                                    score+=copy[i][2];
+                                    copy[i][2]='';
+                                    copy[i][3]*=2;
+                                }
+                                break;
+                            case 3:
+                                copy[i][3]=arr[i][col[2]];
+                                copy[i][2]=arr[i][col[1]];
+                                copy[i][1]=arr[i][col[0]];
+                                if(copy[i][2]==copy[i][3]){
+                                    score+=copy[i][2];
+                                    copy[i][3]*=2;
+                                    copy[i][2]=copy[i][1];
+                                    copy[i][1]='';
+                                    break;
+                                }
+                                if(copy[i][1]==copy[i][2]){
+                                    score+=copy[i][2];
+                                    copy[i][1]='';
+                                    copy[i][2]*=2;
+                                }
+                                break;
+                            case 4:
+                                copy[i][3]=arr[i][3];
+                                copy[i][2]=arr[i][2];
+                                copy[i][1]=arr[i][1];
+                                copy[i][0]=arr[i][0];
+                                if(copy[i][2]==copy[i][3]){
+                                    score+=copy[i][2];
+                                    copy[i][3]*=2;
+                                    if(copy[i][1]==copy[i][0]){
+                                        score+=copy[i][1];
+                                        copy[i][0]='';
+                                        copy[i][1]*=2;
+                                        copy[i][2]=copy[i][1];
+                                        copy[i][1]='';
+                                        break;
+                                    }
+                                    copy[i][2]=copy[i][1];
+                                    copy[i][1]=copy[i][0];
+                                    copy[i][0]='';
+                                    break;
+                                }
+                                if(copy[i][2]==copy[i][1]){
+                                    score+=copy[i][2];
+                                    copy[i][2]*=2;
+                                    copy[i][1]=copy[i][0];
+                                    copy[i][0]='';
+                                    break;
+                                }
+                                if(copy[i][1]==copy[i][0]){
+                                    score+=copy[i][1];
+                                    copy[i][1]*=2;
+                                    copy[i][0]='';
+                                    break;
+                                }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    function left(arr,copy) {
+        for(var i=0;i<4;i++){
+            var row=0; //定义一个变量用于计算本行的数字数量
+            var col=[];//定义一个数组存放本行数字存在的位置
+            for(var j=3;j>=0;j--){
+                if(arr[i][j]||j==0){  //如果每行存在一颗
+                    if(arr[i][j]){col.push(j);row++};
+                    if(j==0){  //达到每行末尾时候进行检测row的数量
+                        switch (row){
+                            case 1:
+                                var num=col[0];
+                                copy[i][0]=arr[i][num];
+                                break;
+                            case 2:
+                                copy[i][0]=arr[i][col[1]];
+                                copy[i][1]=arr[i][col[0]];
+                                if(copy[i][0]==copy[i][1])
+                                {
+                                    score+=copy[i][1];
+                                    copy[i][1]='';
+                                    copy[i][0]*=2;
+                                }
+                                break;
+                            case 3:
+                                copy[i][0]=arr[i][col[2]];
+                                copy[i][1]=arr[i][col[1]];
+                                copy[i][2]=arr[i][col[0]];
+                                if(copy[i][1]==copy[i][0]){
+                                    score+=copy[i][1];
+                                    copy[i][0]*=2;
+                                    copy[i][1]=copy[i][2];
+                                    copy[i][2]='';
+                                    break;
+                                }
+                                if(copy[i][1]==copy[i][2]){
+                                    score+=copy[i][2];
+                                    copy[i][2]='';
+                                    copy[i][1]*=2;
+                                }
+                                break;
+                            case 4:
+                                copy[i][3]=arr[i][3];
+                                copy[i][2]=arr[i][2];
+                                copy[i][1]=arr[i][1];
+                                copy[i][0]=arr[i][0];
+                                if(copy[i][0]==copy[i][1]){
+                                    score+=copy[i][1];
+                                    copy[i][0]*=2;
+                                    if(copy[i][3]==copy[i][2]){
+                                        score+=copy[i][2];
+                                        copy[i][3]='';
+                                        copy[i][2]*=2;
+                                        copy[i][1]=copy[i][2];
+                                        copy[i][2]='';
+                                        break;
+                                    }
+                                    copy[i][1]=copy[i][2];
+                                    copy[i][2]=copy[i][3];
+                                    copy[i][3]='';
+                                    break;
+                                }
+                                if(copy[i][1]==copy[i][2]){
+                                    score+=copy[i][2];
+                                    copy[i][1]*=2;
+                                    copy[i][2]=copy[i][3];
+                                    copy[i][3]='';
+                                    break;
+                                }
+                                if(copy[i][2]==copy[i][3]){
+                                    score+=copy[i][2];
+                                    copy[i][2]*=2;
+                                    copy[i][3]='';
+                                }
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    function topper(arr,copy) {
+        for(var j=0;j<4;j++){
+            var row=0; //定义一个变量用于计算本行的数字数量
+            var col=[];//定义一个数组存放本行数字存在的位置
+            for(var i=3;i>=0;i--){
+                if(arr[i][j]||i==0){  //如果每行存在一颗
+                    if(arr[i][j]){col.push(i);row++};
+                    if(i==0){  //达到每行末尾时候进行检测row的数量
+                        switch (row){
+                            case 1:
+                                var num=col[0];
+                                copy[0][j]=arr[num][j];
+                                break;
+                            case 2:
+                                copy[0][j]=arr[col[1]][j];
+                                copy[1][j]=arr[col[0]][j];
+                                if(copy[0][j]==copy[1][j]){
+                                    score+=copy[0][j];
+                                    copy[1][j]='';
+                                    copy[0][j]*=2;
+                                }
+                                break;
+                            case 3:
+                                copy[0][j]=arr[col[2]][j];
+                                copy[1][j]=arr[col[1]][j];
+                                copy[2][j]=arr[col[0]][j];
+                                if(copy[1][j]==copy[0][j]){
+                                    score+=copy[1][j];
+                                    copy[0][j]*=2;
+                                    copy[1][j]=copy[2][j];
+                                    copy[2][j]='';
+                                    break;
+                                }
+                                if(copy[1][j]==copy[2][j]){
+                                    score+=copy[2][j];
+                                    copy[2][j]='';
+                                    copy[1][j]*=2;
+                                }
+                                break;
+                            case 4:
+                                copy[0][j]=arr[col[3]][j];
+                                copy[1][j]=arr[col[2]][j];
+                                copy[2][j]=arr[col[1]][j];
+                                copy[3][j]=arr[col[0]][j];
+                                if(copy[0][j]==copy[1][j]){
+                                    score+=copy[1][j];
+                                    copy[0][j]*=2;
+                                    if(copy[3][j]==copy[2][j]){
+                                        score+=copy[2][j];
+                                        copy[3][j]='';
+                                        copy[2][j]*=2;
+                                        copy[1][j]=copy[2][j];
+                                        copy[2][j]='';
+                                        break;
+                                    }
+                                    copy[1][j]=copy[2][j];
+                                    copy[2][j]=copy[3][j];
+                                    copy[3][j]='';
+                                    break;
+                                }
+                                if(copy[2][j]==copy[1][j]){
+                                    score+=copy[1][j];
+                                    copy[1][j]*=2;
+                                    copy[2][j]=copy[3][j];
+                                    copy[3][j]='';
+                                    break;
+                                }
+                                if(copy[2][j]==copy[3][j]){
+                                    score+=copy[2][j];
+                                    copy[2][j]*=2;
+                                    copy[3][j]='';
+                                }
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    function bot(arr,copy) {
+        for(var j=0;j<4;j++){
+            var row=0; //定义一个变量用于计算本行的数字数量
+            var col=[];//定义一个数组存放本行数字存在的位置
+            for(var i=0;i<4;i++){
+                if(arr[i][j]||i==3){  //如果每行存在一颗
+                    if(arr[i][j]){col.push(i);row++};
+                    if(i==3){  //达到每行末尾时候进行检测row的数量
+                        switch (row){
+                            case 1:
+                                var num=col[0];
+                                copy[3][j]=arr[num][j];
+                                break;
+                            case 2:
+                                copy[3][j]=arr[col[1]][j];
+                                copy[2][j]=arr[col[0]][j];
+                                if(copy[3][j]==copy[2][j]){ //分别从按键的方向依次往饭方形判定是否有方块的数值相等
+                                    score+=copy[2][j];
+                                    copy[2][j]='';
+                                    copy[3][j]*=2;
+                                }
+                                break;
+                            case 3:
+                                copy[3][j]=arr[col[2]][j];
+                                copy[2][j]=arr[col[1]][j];
+                                copy[1][j]=arr[col[0]][j];
+                                if(copy[2][j]==copy[3][j]){
+                                    score+=copy[2][j];
+                                    copy[3][j]*=2;
+                                    copy[2][j]=copy[1][j];
+                                    copy[1][j]='';
+                                    break;
+                                }
+                                if(copy[1][j]==copy[2][j]){
+                                    score+=copy[1][j];
+                                    copy[1][j]='';
+                                    copy[2][j]*=2;
+                                }
+                                break;
+                            case 4:
+                                copy[3][j]=arr[col[3]][j];
+                                copy[2][j]=arr[col[2]][j];
+                                copy[1][j]=arr[col[1]][j];
+                                copy[0][j]=arr[col[0]][j];
+                                if(copy[3][j]==copy[2][j]){
+                                    score+=copy[2][j];
+                                    copy[3][j]*=2;
+                                    if(copy[1][j]==copy[0][j]){
+                                        score+=copy[1][j];
+                                        copy[0][j]='';
+                                        copy[1][j]*=2;
+                                        copy[2][j]= copy[1][j];
+                                        copy[1][j]='';
+                                        break;
+                                    }
+                                    copy[2][j]=copy[1][j];
+                                    copy[1][j]=copy[0][j];
+                                    copy[0][j]='';
+                                    break;
+                                }
+                                if(copy[2][j]==copy[1][j]){
+                                    score+=copy[1][j];
+                                    copy[2][j]*=2;
+                                    copy[1][j]=copy[0][j];
+                                    copy[0][j]='';
+                                    break;
+                                }
+                                if(copy[1][j]==copy[0][j]){
+                                    score+=copy[1][j];
+                                    copy[1][j]*=2;
+                                    copy[0][j]='';
+                                }
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    //判定原来的棋盘中的其子是否可以移动，如果不能移动就不操作元素
+    function  test(arr,copy) {
+        return arr.toString()!==copy.toString();
+    }
+    
+    function  replay() {
+        var count=0;// 判定游戏是否结束，定义一个变量
+        for(var i=0;i<4;i++){
+            for(var j=0;j<4;j++){
+                if(arr[i][j]){count++;}
+            }
+        }
+        if(count==16){     //当场面上的方块数量为16的时候 分别将场面上的元素进行上下左右四个方向上的模拟。
+            var n1,n2,n3,n4;//然后用四个变量接收关于四个方向上下一步模拟的结果，当且仅当四个方向上都不可以走动时判定游戏结束；
+            left(arr,copy);
+            n1=arr.toString()==copy.toString();
+            clear(copy);
+            right(arr,copy);
+            n2=arr.toString()==copy.toString();
+            clear(copy);
+            topper(arr,copy);
+            n3=arr.toString()==copy.toString();
+            clear(copy);
+            bot(arr,copy);
+            n4=arr.toString()==copy.toString();
+            clear(copy);
+            if(n1&&n2&n3&&n4){
+                alert('Game Over');
+                location.reload();
+            }
+        }
+    }
+    //定义增加数字的函数
+    function add(arr) {
+        while(true){
+            var oneX=Math.floor(Math.random()*4);
+            var oneY=Math.floor(Math.random()*4);
+            var num1=Math.floor(Math.random()*2+1)*2;
+            if(!arr[oneX][oneY]){
+                arr[oneX][oneY]=num1;
+                break;}
+        }
+    }
+    //定定义一个函数用于每次按键之后的数组重置以及颜色的描绘
+    function again() {
+        arr=copy;
+        copy=[];   //这句话很重要！！！！！改变两个数组的指向，重定向copy的指针！！！！！！！
+        clear(copy);
+        add(arr);
+        color(arr);
+        //抓取arr数组中的最大值 传入html中的h1标签中
+//         var backup=[];   //复制arr数组的所有数值然后进行排序算出最大的arr中的数值
+//         for(var i=0;i<4;i++){
+//             backup[i]=[];
+//             for(var j=0;j<4;j++){
+//                 backup[i][j]=arr[i][j]
+//             }
+//         }
+//         //直接拷贝数组数值至另外一个数组
+// //        var backup=arr.slice();//slice内部省略两个数值
+//         num=Math.max(Math.max.apply(null,backup[0]),Math.max.apply(null,backup[1]),Math.max.apply(null,backup[2]),Math.max.apply(null,backup[3]));
+   var num=Math.max.apply(null,arr.toString().split(','));
+        var html= '最大数字:'+num;
+        $('h1').eq(1).html(html);
+        var html= '分数:'+score;
+        $('h1').eq(0).html(html);
+    }
+    $(function () {
+        init(arr);
+        //设置键盘事件
+        window.onkeydown=function(e){
+            var e=window.event||e;
+            var kcode=e.keyCode;
+            if(kcode<=40&&kcode>=37){
+                if(kcode==37){   //如果按下的为左键
+                    replay()
+                    left(arr,copy);
+                    if(test(arr,copy)){
+                        again()
+                    }else{
+                          //执行移动步骤，检测arr与copy数组是否数值相等，如若数值相等则证明某一方向上无法移动
+                        clear(copy);
+                    };
+                }else if(kcode==38){  //如果按下的为上键
+                    replay()
+                    topper(arr,copy);
+                    if(test(arr,copy)){
+                        again()
+                    }else{
+                        clear(copy);
+                    };
+                }else if(kcode==39){  //如果按下的为右键
+                    replay()
+                    right(arr,copy);
+                    if(test(arr,copy)){
+                        again()
+                    }else{
+                        clear(copy);
+                    };
+                }else{//如果按下的为下键
+                    replay()
+                    bot(arr,copy);
+                    if(test(arr,copy)){
+                        again()
+                    }else{
+                        clear(copy);
+                    };
+                }
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,60 @@
+#all{
+    position:relative;
+    width:100%;
+    height:1000px;
+    background:#2c3540;
+}
+.moveBox{
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:1000;
+}
+.box-1{
+    position:absolute;
+    top:100px;
+    left:10%;
+    width:253px;
+    height:111px;
+    background:url(../img/colorbox1.png);
+    background-size:253px 111px;
+    padding-top:55px;
+    padding-left:15px;
+    transition: all 4s ease;
+    -webkit-transition: all 4s ease;
+}
+.box-1.active{
+    top:400px;
+    left:15%;
+    transition: all 4s ease;
+    -webkit-transition: all 4s ease;
+}
+[class*='time']{
+    display:block;
+    text-align:left;
+    color:#fff;
+    font-size:24px;
+    line-height:1.5em;
+    font-weight:bold;
+    cursor: pointer;
+    transform: matrix(0.990268, 0.139173, -0.139173, 0.990268, 0, 0);
+}
+.box-4{
+    position:absolute;
+    top:400px;
+    right:23%;
+    width:253px;
+    height:111px;
+    padding-top:55px;
+    padding-left:40px;
+    background:url(../img/colorbox3.png);
+    background-size:253px 111px;
+    transition: all 4s ease;
+    -webkit-transition: all 4s ease;
+}
+.box-4.active{
+    top:150px;
+    right:35%;
+    transition: all 4s ease;
+    -webkit-transition: all 4s ease;
+}

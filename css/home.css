@@ -1,0 +1,406 @@
+body{
+    position:relative;
+}
+.navbar-brand img{
+    width:100px;
+}
+.navbar>.container{
+    vertical-align: middle;
+}
+.navbar .nav.nav-pills a{
+    margin-left:auto;
+    margin-right:auto;
+    text-align: center;
+    width:200px;
+}
+.navbar .nav.nav-pills a:hover{
+    color:#2c3540;
+    background:#ffd306;
+    border-radius:30px;
+}
+@media (max-width: 768px){
+    .navbar-collapse {
+        padding-left: 15px;
+        padding-top:10px;
+    }
+}
+/*affix*/
+#my-affix-nav{
+    top:450px;
+    right:20px;
+    background:rgba(44,53,64,.4);
+    border-radius: 20px;
+}
+#my-affix-nav .nav a{
+   display:inline-block;
+    color:#ffffff;
+    font-size:16px;
+    font-weight:bold;
+}
+#my-affix-nav .nav a:hover{
+   background:transparent url(../img/stroke-circle-small.svg) ;
+}
+#my-affix-nav .nav span{
+    display:inline-block;
+    opacity:0;
+    width:100px;
+    text-align:right;
+    padding-right:30px;
+    color:#fff;
+}
+/*jumbotron*/
+.jumbotron{
+    text-align: center;
+}
+/*jumbotron*/
+.jumbotron{
+    position:relative;
+    height:400px;
+}
+.jumbotron-bg{
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:10;
+    width:100%;
+    height:100%;
+    background:#ffd306;
+    transition:2s ease;
+    -webkit-transition:2s ease;
+    clip-path: polygon(0% 0%, 0% 0%, 0% 0%);
+    -webkit-clip-path: polygon(0% 0%, 0% 0%, 0% 0%);
+}
+.jumbotron-bg.active{
+    background:#ffd306;
+    transition:4s ease;
+    -webkit-transition: 4s ease;
+    clip-path: polygon(0% 0%,95% 0%,0% 180%);
+    -webkit-clip-path: polygon(0% 0%,95% 0%,0% 180%);
+}
+.jumb-contain{
+    position:absolute;
+    top:30%;
+    left:20%;
+    z-index:99;
+}
+/*works*/
+#works .row{
+    margin-bottom:30px;
+}
+.works-link{
+    display:inline-block;
+    padding:0;
+    over-flow:hidden;
+}
+.works-img{
+    border-radius:0;
+    -webkit-transition:border-radius .2s ease;
+    /*height:200px;*/
+}
+.works-img:hover{
+    border-radius:80px;
+    border-bottom-left-radius: 0;
+    -webkit-transition:border-radius .6s ease;
+}
+.works-intro{
+    display:none;
+}
+/*about*/
+#about{
+    position:relative;
+    background:#fff;
+}
+#about .container-fluid{
+    padding-bottom:50px;
+}
+#about .row h2{
+    text-align: center;
+    color:#2c3540;
+}
+#stats-title-t,#stats-title-b{
+    text-align: center;
+    font-size:36px;
+    font-weight:bold;
+    color:#2c3540;
+    margin:100px auto;
+}
+[class*='stats']{
+    width:200px;
+    height:200px;
+    line-height:200px;
+    position:relative;
+    z-index:1;
+    border-radius: 50%;
+    border:3px solid transparent;
+    background: rgb(44,53,64);
+    margin-bottom:20px;
+    text-align: center;
+    vertical-align: middle;
+    font-size:60px;
+    color:#ffd306;
+    -webkit-transition: all 600ms ease-in-out;
+    -moz-transition: all 600ms ease-in-out;
+    -o-transition: all 600ms ease-in-out;
+    -ms-transition: all 600ms ease-in-out;
+    transition: all 600ms ease-in-out;
+}
+[class*='stats']:after{
+    content:'';
+    width:160px;
+    height:160px;
+    line-height:160px;
+    position:absolute;
+    top: 20px;
+    left: 20px;
+    z-index:-1;
+    border-radius: 50%;
+    border:3px solid rgba(255,211,6,0);
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    -ms-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+[class*='stats']:hover:after{
+    width:203px;
+    height:203px;
+    top: -3px;
+    left: -3px;
+    opacity:1;
+    border-color: rgb(255,211,6);
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    -ms-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+[class*='stats']:hover{
+    border-color:transparent;
+    background: #fff;
+    color:#2c3540;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    -ms-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+
+/*about - skills*/
+.skills{
+    background:rgb(116,194,171);
+    padding-bottom:60px;
+    position: relative;
+    height:550px;
+    overflow: hidden;
+}
+@media (max-width: 768px){
+    .skills{
+        height:900px;
+    }
+}
+@media (min-width: 768px) {
+    .skills-l{
+        position:absolute ;
+        bottom:550px;
+        height:550px;
+        padding-top:220px;
+    }
+    .skills-r{
+        position:absolute ;
+        top:550px;
+        right:0;
+        height:550px;
+        padding-top:220px;
+    }
+    .skills-l.active{
+        bottom:0;
+        transition:all 2s ease;
+        -webkit-transition:all 2s ease;
+    }
+    .skills-r.active{
+        top:0;
+        transition:all 2s ease;
+        -webkit-transition:all 2s ease;
+    }
+}
+
+/*connect*/
+@media (max-width: 992px){
+   #cvs-connec{
+        width:600px;
+    }
+}
+#connect{
+    padding-top:50px;
+    color:#ffd306;
+    font-size:20px;
+}
+#connect .col-xs-10{
+    text-align: center;
+}
+#cvs-connec{
+    background:#fff;
+    margin:50px auto;
+}
+#connect .dropdown{
+    display:inline-block;
+}
+#connect .dropdown a{
+   color:#ffd306;
+    font-weight:bold;
+    margin:0 20px;
+}
+#connect .dropdown-menu{
+    background: rgba(44,53,64,.4);
+    width:60px;
+    text-align:center;
+}
+#connect .dropdown-menu li{
+    padding:10px;
+    margin:0 30px;
+    cursor: pointer;
+    border-bottom:1px solid transparent;
+}
+#connect .dropdown-menu li:hover{
+    border-color:#ffd306;
+    color:#ffd306;
+    font-weight:bold;
+}
+[for='fill']{
+    margin-left:30px;
+}
+[for='lineColor']{
+    margin-left:20px;
+}
+#clear{
+    cursor: pointer;
+}
+
+/*box*/
+#all{
+    position:relative;
+}
+.moveBox{
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:-10;
+}
+[class*='box']{
+    z-index:2000;
+}
+.box-1{
+    position:absolute;
+    top:32%;
+    right:7%;
+    width:253px;
+    height:111px;
+    background:url(../img/colorbox1.png);
+    background-size:253px 111px;
+    padding-top:55px;
+    padding-left:15px;
+    transition: all 4s ease;
+    -webkit-transition: all 4s ease;
+}
+.box-1.active{
+    top:70%;
+    right:1%;
+    transition: all 4s ease;
+    -webkit-transition: all 4s ease;
+}
+[class*='time']{
+    display:block;
+    text-align:left;
+    color:#fff;
+    font-size:24px;
+    line-height:1.5em;
+    font-weight:bold;
+    cursor: pointer;
+    transform: matrix(0.990268, 0.139173, -0.139173, 0.990268, 0, 0);
+}
+.box-2{
+    position:absolute;
+    top:20%;
+    left:0;
+    width:150px;
+    height:150px;
+    background:url(../img/strokebox2.png);
+    background-size:150px 150px;
+    transition: top 4s ease;
+    -webkit-transition: top 4s ease;
+}
+.box-2.active{
+    top:30%;
+    transition: all 4s ease;
+    -webkit-transition: all 4s ease;
+}
+/*line*/
+.box-3{
+    position:absolute;
+    top:18%;
+    right:0;
+    width:120px;
+    height:500px;
+    background:url(../img/nodeline1.png);
+    background-size:150px 600px;
+    transition: top 4s ease;
+    -webkit-transition: top 4s ease;
+}
+.box-3.active{
+    top:25%;
+    transition: all 4s ease;
+    -webkit-transition: all 4s ease;
+}
+/*color rect time*/
+.box-4{
+    position:absolute;
+    top:12%;
+    left:3%;
+    width:253px;
+    height:111px;
+    padding-top:55px;
+    padding-left:40px;
+    background:url(../img/colorbox3.png);
+    background-size:253px 111px;
+    transition: top 4s ease;
+    -webkit-transition: top 4s ease;
+}
+.box-4.active{
+    top:52%;
+    transition: all 4s ease;
+    -webkit-transition: all 4s ease;
+}
+/*strok rect*/
+.box-5{
+    position:absolute;
+    top:80%;
+    right:2%;
+    width:150px;
+    height:300px;
+    background:url(../img/strokebox1.png);
+    background-size:150px 300px;
+    transition: top 4s ease;
+    -webkit-transition: top 4s ease;
+}
+.box-5.active{
+    top:85%;
+    transition: all 4s ease;
+    -webkit-transition: all 4s ease;
+}
+.box-6{
+    position:absolute;
+    top:78%;
+    left:2%;
+    width:150px;
+    height:100px;
+    background:url(../img/colorbox2.png);
+    background-size:150px 100px;
+    transition: all 4s ease;
+    -webkit-transition: all 4s ease;
+}
+.box-6.active{
+    top:83%;
+    left:7%;
+    transition: all 4s ease;
+    -webkit-transition: all 4s ease;
+}
